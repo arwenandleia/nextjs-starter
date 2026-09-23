@@ -2,6 +2,7 @@
 
 - Read [Installation Docs](https://nextjs.org/docs/app/getting-started/installation)
 - Create a project director using `mkdir <projectname>`
+- Remeber to set the metadata in the `app.layout.tsx` file
 
 ## Summary
 
@@ -24,6 +25,12 @@ export default async function RootHomePage() {
     </article>
   );
 }
+```
+
+### Additional Helper Libraries
+
+```bash
+npm install server-only
 ```
 
 ### Directory Structure

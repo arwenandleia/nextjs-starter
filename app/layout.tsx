@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Oxanium, Roboto } from "next/font/google";
+import { Geist_Mono, Oxanium, Roboto } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import GlobalProviders from "@/components/client/GlobalProviders";
+import RootHeader from "@/components/server/RootHeader";
+import RootFooter from "@/components/server/RootFooter";
 
-const robotoHeading = Roboto({subsets:['latin'],variable:'--font-heading'});
-
-const oxanium = Oxanium({subsets:['latin'],variable:'--font-sans'});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const robotoHeading = Roboto({
   subsets: ["latin"],
+  variable: "--font-heading",
 });
-
+const oxanium = Oxanium({ subsets: ["latin"], variable: "--font-sans" });
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -26,9 +25,27 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", oxanium.variable, robotoHeading.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geistMono.variable,
+        "font-sans",
+        oxanium.variable,
+        robotoHeading.variable,
+      )}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body>
+        <GlobalProviders>
+          <div className="flex flex-col h-screen no-scrollbar justify-between">
+            <RootHeader />
+            <main className="max-w-container typeset w-full h-full no-scrollbar">
+              {children}
+            </main>
+            <RootFooter />
+          </div>
+        </GlobalProviders>
+      </body>
     </html>
   );
 }
