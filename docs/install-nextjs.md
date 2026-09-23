@@ -25,3 +25,10 @@ export default async function RootHomePage() {
   );
 }
 ```
+
+### Directory Structure
+
+```bash
+mkdir -p components/client
+mkdir -p components/server
+```
