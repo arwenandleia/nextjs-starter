@@ -6,6 +6,7 @@
 - [ ] [Routing Files](https://nextjs.org/docs/app/api-reference/file-conventions)
 - [ ] Headers and Footers
 - [ ] App wide layout
+- [ ] [Drizzle ORM](https://orm.drizzle.team/docs/get-started/postgresql-new)
 
 ## Directory Structure
 
@@ -14,4 +15,27 @@
 
 ## TODO STILL
 
+- Better Auth
 - Linting for server,client and actions
+- MDX components
+- Setup Postgres locally
+
+### Better Auth
+
+- Installation
+- SignUp Form
+- Login Form
+- Verification Email form
+- Reset Passsword Form
+- Change Password Form
+
+## Yet to implement
+
+- Error Monitoring : Sentry
+- AI SDF - AI SDK from Vercel
+- Payments: Polar
+- Analytics: Vercel inbuild
+
+## Additional Docs on
+
+- Setup Postgres locally

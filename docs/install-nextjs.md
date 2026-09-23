@@ -30,7 +30,7 @@ export default async function RootHomePage() {
 ### Additional Helper Libraries
 
 ```bash
-npm install server-only
+npm install server-only zod resend react-hook-form @hookform/resolvers
 ```
 
 ### Directory Structure
@@ -38,4 +38,6 @@ npm install server-only
 ```bash
 mkdir -p components/client
 mkdir -p components/server
+mkdir -p lib/db/schemas
+mkdir -p lib/actions
 ```
