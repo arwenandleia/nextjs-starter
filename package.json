@@ -10,7 +10,11 @@
     "db:generate:dev": "drizzle-kit generate",
     "db:migrate:dev": "drizzle-kit migrate",
     "db:check:dev": "drizzle-kit check",
-    "db:dev": "npm run db:generate:dev && npm run db:migrate:dev && npm run db:check:dev"
+    "db:dev": "npm run db:generate:dev && npm run db:migrate:dev && npm run db:check:dev",
+    "db:generate:prod": "drizzle-kit generate --config drizzle.config.prod.ts",
+    "db:migrate:prod": "drizzle-kit migrate --config drizzle.config.prod.ts",
+    "db:check:prod": "drizzle-kit check --config drizzle.config.prod.ts",
+    "db:prod": "npm run db:generate:prod && npm run db:migrate:prod && npm run db:check:prod"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",

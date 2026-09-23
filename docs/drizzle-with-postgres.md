@@ -26,7 +26,7 @@ import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
   schema: "./lib/db/schemas/**/*.ts",
-  out: "./lib/db/migrations",
+  out: "./lib/db/migrations/local",
   dialect: "postgresql",
   dbCredentials: {
     url: process.env.DATABASE_URL!,
@@ -45,4 +45,26 @@ export default defineConfig({
 "db:migrate:dev": "drizzle-kit migrate",
 "db:check:dev": "drizzle-kit check",
 "db:dev": "npm run db:generate:dev && npm run db:migrate:dev && npm run db:check:dev",
+```
+
+## APPENDIX
+
+### Add a drizzle config for production
+
+```bash
+touch drizzle.config.prod.ts
+```
+
+```ts
+import { defineConfig } from "drizzle-kit";
+
+export default defineConfig({
+  schema: "./lib/db/schemas/**/*.ts",
+  out: "./lib/db/migrations/prod",
+  dialect: "postgresql",
+  dbCredentials: {
+    url: process.env.DATABASE_URL!,
+    ssl: "require",
+  },
+});
 ```
