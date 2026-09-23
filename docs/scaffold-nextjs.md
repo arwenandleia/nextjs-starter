@@ -7,6 +7,8 @@
 - [ ] Headers and Footers
 - [ ] App wide layout
 - [ ] [Drizzle ORM](https://orm.drizzle.team/docs/get-started/postgresql-new)
+- [ ] [Better Auth](https://better-auth.com/docs/installation) with [Drizzle](https://better-auth.com/docs/adapters/drizzle)
+- [ ] Add [NextJS Integration](https://better-auth.com/docs/integrations/next)
 
 ## Directory Structure
 
@@ -15,14 +17,15 @@
 
 ## TODO STILL
 
-- Better Auth
 - Linting for server,client and actions
 - MDX components
 - Setup Postgres locally
 
 ### Better Auth
 
-- Installation
+- Configure Better Auth
+- Dynamic URLS
+- Resend
 - SignUp Form
 - Login Form
 - Verification Email form
