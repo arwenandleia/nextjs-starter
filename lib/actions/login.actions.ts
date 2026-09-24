@@ -5,6 +5,8 @@ import { isAPIError } from "better-auth/api";
 import { LoginFormType } from "@/components/client/login/LoginForm";
 import { SignupFormType } from "@/components/client/login/SignupForm";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export type LoginActionResonseType = {
   success: boolean;
@@ -22,17 +24,18 @@ export async function signUpUser({
       headers: await headers(),
     });
     if (response.user.email === email) {
-      return {
-        success: true,
-        message: `User ${fullName} with email ${email} succesfully created`,
-      };
+      revalidatePath("/");
+    } else {
+      return { success: false, message: "Unable to signup user" };
     }
   } catch (error) {
     if (isAPIError(error)) {
       return { success: false, message: error.message };
     }
+
+    return { success: false, message: "unknown error" };
   }
-  return { success: false, message: "unknown error" };
+  redirect("/dashboard");
 }
 
 export async function loginUser({
@@ -45,10 +48,9 @@ export async function loginUser({
       headers: await headers(),
     });
     if (response.user.email === email) {
-      return {
-        success: true,
-        message: `User with email ${email} succesfully logged in`,
-      };
+      revalidatePath("/");
+    } else {
+      return { success: false, message: "Unable to login user" };
     }
   } catch (error) {
     if (isAPIError(error)) {
@@ -56,26 +58,35 @@ export async function loginUser({
         error.statusCode === 403 &&
         error.body?.code === "EMAIL_NOT_VERIFIED"
       ) {
+        const verifyEmailResponse = await resendVerificationEmail(email);
+        if (verifyEmailResponse.success) {
+          return { success: false, message: verifyEmailResponse.message };
+        }
         return { success: false, message: "EMAIL_NOT_VERIFIED" };
       }
       return { success: false, message: error.message };
     }
+    return { success: false, message: "unknown error" };
   }
-  return { success: false, message: "unknown error" };
+
+  redirect("/dashboard");
 }
 
 export async function logoutUser(): Promise<LoginActionResonseType> {
   try {
     const response = await auth.api.signOut({ headers: await headers() });
     if (response.success) {
-      return { success: true, message: "User Logged Out" };
+      revalidatePath("/");
+    } else {
+      return { success: false, message: "Unable to logout user" };
     }
   } catch (error) {
     if (isAPIError(error)) {
       return { success: false, message: error.message };
     }
+    return { success: false, message: "unknown error" };
   }
-  return { success: false, message: "unknown error" };
+  redirect("/");
 }
 
 export async function resendVerificationEmail(
