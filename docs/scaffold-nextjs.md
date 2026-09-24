@@ -19,20 +19,9 @@
 
 ## TODO STILL
 
-- Linting for server,client and actions
+- Reset Change Password
 - MDX components
 - Setup Postgres locally
-
-### Better Auth
-
-- Configure Better Auth
-- Dynamic URLS
-- Resend
-- SignUp Form
-- Login Form
-- Verification Email form
-- Reset Passsword Form
-- Change Password Form
 
 ## Yet to implement
 

@@ -70,3 +70,14 @@
 },
 
 ```
+
+## EXAMPLE: Tic Tac Toe
+
+```bash
+git switch -c features/tic-tac-toe
+mkdir -p features/tic-tac-toe
+touch features/tic-tac-toe/TicTacToe.tsx
+mkdir -p features/tic-tac-toe/components/client
+mkdir -p features/tic-tac-toe/components/server
+mkdir -p features/tic-tac-toe/lib/actions
+```
