@@ -2,6 +2,7 @@ import "server-only";
 
 import Link from "next/link";
 import LightDarkButton from "@/components/client/LightDarkButton";
+import LoginLogoutButton from "@/components/client/login/LoginLogoutButton";
 
 const RootHeader = () => {
   return (
@@ -11,6 +12,9 @@ const RootHeader = () => {
           <Link href="/">NextJS Starter</Link>
         </h2>
         <ul className="flex items-center gap-x-4">
+          <li>
+            <LoginLogoutButton />
+          </li>
           <li>
             <LightDarkButton />
           </li>
