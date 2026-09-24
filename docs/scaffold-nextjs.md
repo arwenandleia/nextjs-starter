@@ -9,6 +9,7 @@
 - [ ] [Drizzle ORM](https://orm.drizzle.team/docs/get-started/postgresql-new)
 - [ ] [Better Auth](https://better-auth.com/docs/installation) with [Drizzle](https://better-auth.com/docs/adapters/drizzle)
 - [ ] Add [NextJS Integration](https://better-auth.com/docs/integrations/next)
+- [ ] Authentication with [Email and Password](https://better-auth.com/docs/authentication/email-password)
 
 ## Directory Structure
 
@@ -42,3 +43,4 @@
 ## Additional Docs on
 
 - Setup Postgres locally
+- Display current docs using mdx
