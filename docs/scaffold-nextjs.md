@@ -10,6 +10,7 @@
 - [ ] [Better Auth](https://better-auth.com/docs/installation) with [Drizzle](https://better-auth.com/docs/adapters/drizzle)
 - [ ] Add [NextJS Integration](https://better-auth.com/docs/integrations/next)
 - [ ] Authentication with [Email and Password](https://better-auth.com/docs/authentication/email-password)
+- [ ] Authentication Server Actions using [better-auth API](https://better-auth.com/docs/concepts/api) and [Email and Password](https://better-auth.com/docs/authentication/email-password)
 
 ## Directory Structure
 
