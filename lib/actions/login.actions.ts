@@ -107,3 +107,46 @@ export async function resendVerificationEmail(
   }
   return { success: false, message: "unknown error" };
 }
+
+export async function requestPasswordReset(
+  email: string,
+): Promise<LoginActionResonseType> {
+  try {
+    const response = await auth.api.requestPasswordReset({
+      body: {
+        email,
+        redirectTo: "https://loki.training/password/reset",
+      },
+      headers: await headers(),
+    });
+    return { success: response.status, message: response.message };
+  } catch (error) {
+    if (isAPIError(error)) {
+      return { success: false, message: error.message };
+    }
+
+    return { success: false, message: "unknown error" };
+  }
+}
+
+export async function resetUserPassword(
+  newPassword: string,
+  token: string,
+): Promise<LoginActionResonseType> {
+  try {
+    const { status } = await auth.api.resetPassword({
+      body: { newPassword, token },
+      headers: await headers(),
+    });
+    if (status) {
+      return { success: true, message: "Password Reset. Please login" };
+    } else {
+      return { success: false, message: "Unable to reset password" };
+    }
+  } catch (error) {
+    if (isAPIError(error)) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: "unknown error" };
+  }
+}
