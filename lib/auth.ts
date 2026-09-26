@@ -6,6 +6,7 @@ import { drizzleAdapter } from "@better-auth/drizzle-adapter/relations-v2";
 import { db } from "./db";
 import * as schema from "./db/schemas/auth-schema";
 
+const BASE_URL = process.env.BETTER_AUTH_URL!;
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const auth = betterAuth({
@@ -18,20 +19,21 @@ export const auth = betterAuth({
   },
   baseURL: {
     allowedHosts: [
-      "loki.training",
-      "www.loki.training",
+      `${BASE_URL}`,
+      `www.${BASE_URL}`,
       "localhost:3000",
       "*.vercel.app",
     ],
     protocol: process.env.NODE_ENV === "development" ? "http" : "https",
   },
+  trustedOrigins: ["http:localhost:3000", `${BASE_URL}`, `www.${BASE_URL}`],
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
     revokeSessionsOnPasswordReset: true,
     sendResetPassword: async ({ user, url }) => {
       void resend.emails.send({
-        from: "Reset Password <reset@loki.training>",
+        from: `Reset Password <reset@${BASE_URL}>`,
         to: user.email,
         subject: "Reset your password",
         html: `Click <a href="${url}">here</a> to reset your password.`,
@@ -43,7 +45,7 @@ export const auth = betterAuth({
     autoSignInAfterVerification: true,
     sendVerificationEmail: async ({ user, url }) => {
       void resend.emails.send({
-        from: "Verify <verify@loki.training>",
+        from: `Verify <verify@${BASE_URL}>`,
         to: user.email,
         subject: "Verify your email address",
         html: `Click <a href="${url}">here</a> to verify your email.`,
@@ -54,7 +56,7 @@ export const auth = betterAuth({
     emailOTP({
       sendVerificationOTP: async ({ email, otp, type }) => {
         void resend.emails.send({
-          from: "OTP <otp@loki.training>",
+          from: `OTP <otp@${BASE_URL}>`,
           to: email,
           subject:
             type === "sign-in" ? "Your sign-in code" : "Your verification code",

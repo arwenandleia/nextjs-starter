@@ -13,6 +13,8 @@ export type LoginActionResonseType = {
   message: string;
 };
 
+const BASE_URL = process.env.BETTER_AUTH_URL!;
+
 export async function signUpUser({
   fullName,
   email,
@@ -115,7 +117,7 @@ export async function requestPasswordReset(
     const response = await auth.api.requestPasswordReset({
       body: {
         email,
-        redirectTo: "https://loki.training/password/reset",
+        redirectTo: `https://${BASE_URL}/password/reset`,
       },
       headers: await headers(),
     });

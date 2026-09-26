@@ -19,9 +19,7 @@
 
 ## TODO STILL
 
-- Reset Change Password
 - MDX components
-- Setup Postgres locally
 
 ## Yet to implement
 
