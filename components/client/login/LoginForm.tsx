@@ -17,6 +17,7 @@ import { Field, FieldGroup } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import ControlledFieldInput from "@/components/ui/custom/ControlledFieldInput";
 import { loginUser } from "@/lib/actions/login.actions";
+import Link from "next/link";
 
 const loginFormSchema = z.object({
   email: z.email(),
@@ -59,7 +60,10 @@ const LoginForm = () => {
       <CardHeader>
         <CardTitle>Login to your Account</CardTitle>
         <CardDescription>
-          Enter your email and password to login
+          Forgot Password?
+          <Link href="/login/password/request-reset" className="ms-2">
+            Click Here
+          </Link>
         </CardDescription>
       </CardHeader>
       <CardContent>

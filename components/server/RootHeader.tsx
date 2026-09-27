@@ -4,7 +4,7 @@ import Link from "next/link";
 import LightDarkButton from "@/components/client/LightDarkButton";
 import LoginLogoutButton from "@/components/client/login/LoginLogoutButton";
 import NavMenu from "@/components/client/NavMenu";
-import { NavigationSheet } from "@/components/server/NavigationSheet";
+import { NavigationSheet } from "@/components/client/NavigationSheet";
 
 const RootHeader = () => {
   return (
