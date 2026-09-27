@@ -9,9 +9,9 @@ const RootFooter = () => {
     <footer className="w-full sticky bottom-0 z-50 border-t-2 pt-2 pb-1 text-xs">
       <nav className="max-w-container flex justify-between items-center">
         <p>© 2026 Aditya Dixit</p>
-        <p>site under construction...</p>
+        <p className="hidden md:block">site under construction...</p>
         <ul className="flex items-center gap-x-4">
-          <li className="hidden md:block">
+          <li className="hidden sm:block">
             <Button variant="outline" size="icon-xs">
               <Link href="https://x.com/arwenandleia" target="_blank">
                 <IconBrandX />

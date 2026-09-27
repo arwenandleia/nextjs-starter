@@ -10,7 +10,7 @@
 
 ```bash
 npx shadcn@latest init --preset b1dnn1Zmm8 --template next --pointer
-npx shadcn@latest add sonner separator input card field tabs
+npx shadcn@latest add sonner separator input card field tabs navigation-menu sheet
 ```
 
 ## Dark Mode
