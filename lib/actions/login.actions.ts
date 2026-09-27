@@ -13,7 +13,7 @@ export type LoginActionResonseType = {
   message: string;
 };
 
-const BASE_URL = process.env.BETTER_AUTH_URL!;
+const BASE_URL = process.env.RESEND_EMAIL_DOMAIN!;
 
 export async function signUpUser({
   fullName,

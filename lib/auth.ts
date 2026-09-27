@@ -6,7 +6,7 @@ import { drizzleAdapter } from "@better-auth/drizzle-adapter/relations-v2";
 import { db } from "./db";
 import * as schema from "./db/schemas/auth-schema";
 
-const BASE_URL = process.env.BETTER_AUTH_URL!;
+const BASE_URL = process.env.RESEND_EMAIL_DOMAIN!;
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const auth = betterAuth({
