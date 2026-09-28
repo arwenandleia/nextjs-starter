@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import { logoutUser } from "@/lib/actions/login.actions";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const LoginLogoutButton = () => {
-  const { data: session } = authClient.useSession();
+  const { data: session, refetch } = authClient.useSession();
+  const router = useRouter();
 
   if (!session) {
     return (
@@ -21,6 +23,11 @@ const LoginLogoutButton = () => {
     const response = await logoutUser();
     if (!response.success) {
       toast.error(response.message);
+    } else {
+      toast.info(response.message);
+      refetch();
+      router.refresh();
+      router.push("/");
     }
   };
 

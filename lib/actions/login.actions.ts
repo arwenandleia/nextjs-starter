@@ -26,7 +26,10 @@ export async function signUpUser({
       headers: await headers(),
     });
     if (response.user.email === email) {
-      revalidatePath("/");
+      return {
+        success: true,
+        message: "Signup Successful. Please Check and Verify your Email",
+      };
     } else {
       return { success: false, message: "Unable to signup user" };
     }
@@ -37,7 +40,6 @@ export async function signUpUser({
 
     return { success: false, message: "unknown error" };
   }
-  redirect("/dashboard");
 }
 
 export async function loginUser({
@@ -51,6 +53,7 @@ export async function loginUser({
     });
     if (response.user.email === email) {
       revalidatePath("/");
+      return { success: true, message: "User Logged In" };
     } else {
       return { success: false, message: "Unable to login user" };
     }
@@ -70,8 +73,6 @@ export async function loginUser({
     }
     return { success: false, message: "unknown error" };
   }
-
-  redirect("/dashboard");
 }
 
 export async function logoutUser(): Promise<LoginActionResonseType> {
@@ -79,6 +80,7 @@ export async function logoutUser(): Promise<LoginActionResonseType> {
     const response = await auth.api.signOut({ headers: await headers() });
     if (response.success) {
       revalidatePath("/");
+      return { success: true, message: "User Logged Out" };
     } else {
       return { success: false, message: "Unable to logout user" };
     }
@@ -88,7 +90,6 @@ export async function logoutUser(): Promise<LoginActionResonseType> {
     }
     return { success: false, message: "unknown error" };
   }
-  redirect("/");
 }
 
 export async function resendVerificationEmail(

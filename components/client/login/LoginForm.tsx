@@ -18,6 +18,8 @@ import { Button } from "@/components/ui/button";
 import ControlledFieldInput from "@/components/ui/custom/ControlledFieldInput";
 import { loginUser } from "@/lib/actions/login.actions";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const loginFormSchema = z.object({
   email: z.email(),
@@ -42,6 +44,13 @@ const LoginForm = () => {
       password: "",
     },
   });
+  const { data: session, refetch } = authClient.useSession();
+  const router = useRouter();
+
+  if (session) {
+    router.refresh();
+    router.push("/dashboard");
+  }
 
   const onSubmit = async ({ email, password }: LoginFormType) => {
     const { success, message } = await loginUser({
@@ -50,6 +59,9 @@ const LoginForm = () => {
     });
     if (success) {
       toast.success(message);
+      refetch();
+      router.refresh();
+      router.push("/dashboard");
     } else {
       toast.error(message);
     }
