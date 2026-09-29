@@ -20,6 +20,7 @@
 ## TODO STILL
 
 - MDX components
+- implement the `useTransition` hook when using `router.push()`
 
 ## Yet to implement
 

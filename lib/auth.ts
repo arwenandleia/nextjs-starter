@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { betterAuth } from "better-auth";
 import { nextCookies } from "better-auth/next-js";
-import { emailOTP } from "better-auth/plugins";
+import { admin, emailOTP } from "better-auth/plugins";
 import { drizzleAdapter } from "@better-auth/drizzle-adapter/relations-v2";
 import { db } from "./db";
 import * as schema from "./db/schemas/auth-schema";
@@ -64,6 +64,7 @@ export const auth = betterAuth({
         });
       },
     }),
+    admin(),
     nextCookies(), // make sure this is the last plugin in the array
   ],
 });
